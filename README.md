@@ -73,7 +73,7 @@ A divisão dos passos utilizados no projeto foi:
 Re-escala dos atributos numéricos para não força o modelo a trabalhar com valores muito altos: 
 <ul>
 <li>MinMaxscaler: 'air_temperature_k', 'process_temperature_k', 'tool_wear_min' e 'power_w';</li>
-<li>StandardScale: 'rotational_speed_rpm' e 'torque_nm',.</li>
+<li>StandardScale: 'rotational_speed_rpm' e 'torque_nm'.</li>
 </ul>
 </li>
 <li>Encoding das variáveis categóricas:
