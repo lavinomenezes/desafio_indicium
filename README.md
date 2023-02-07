@@ -97,7 +97,7 @@ Com os resultados do boruta, feature importance e as análises feitas previament
 <li>XGboost classifier.</li>
 <li>Lightgbm classifier.</li>
 </ul>
-Ao final o modelo escolhido foi o XGBoost, mais a frente será mostrado o motivo da escolha
+Para o treinamento, o dataset de treino foi separado em 70% treino e 30% validação. Ao final o modelo escolhido foi o XGBoost, mais a frente será mostrado o motivo da escolha
 </li>
 <li>
 <li>
@@ -112,28 +112,67 @@ Ao final o modelo escolhido foi o XGBoost, mais a frente será mostrado o motivo
 
 ## Performance do modelo de Machine learning
 
-Para este modelo, foram utilizadas as métricas de recall, precision e f1-score, entretanto, como estamos tratando de um modelo de classificação multiclasse as métricas precisam ser ajustadas para o modo 'macro' que calcula a média de cada métrica por classe
+Para este modelo, foram utilizadas as métricas de recall, precision e f1-score, entretanto, como estamos tratando de um modelo de classificação multiclasse as métricas precisam ser ajustadas para o modo 'macro' que calcula a média de cada métrica por classe.
 
 Como o modelo foi treinado com dados desbalanceados isso pode afetar as métricas previamente citadas, então para avaliar se o modelo performar bem apesar do desbalanceamento também foi utilizado o “balanced_acurracy_score”.
+
+<strong>A métrica escolhida para avaliar o modelo é o recall, pois o objetivo é minimizar o número de falsos negativos. É importante identificar corretamente as máquinas com falhas para evitar situações que possam agravar a falha e levar a perda total do equipamento. Portanto, penalizar os falsos negativos é considerado a melhor opção para o problema em questão.</strong>
+
+No entanto, é importante levar em consideração outras métricas também, pois uma alta performance em um único indicador pode não refletir a performance geral do modelo. Portanto, é importante manter o controle das métricas complementares para garantir uma avaliação mais precisa da performance do modelo.
 
 Em todos os casos o método de Cross-validation foi aplicado para generalizar os resultados de performance evitando que um modelo tenha melhor resultado por coincidência.
 
 Para este projeto as métricas para avaliação foram:
 <ul>
-    <li>Precion(macro);</li>
+    <li>Precision(macro);</li>
     <li>Recall(macro);</li>
     <li>f1-score(macro);</li>
     <li>Balanced_acurracy_score.</li>
 </ul>
 
 |   | Model name               | precison_multclass_cv | precison_std | recall_multclass_cv | recall_cv | balanced_score_cv | balanced_std | f1_score_cv | f1_std |
-|---|--------------------------|-----------------------|--------------|---------------------|-----------|-------------------|--------------|-------------|--------|
-| 0 | KNN Cross_Val            | 0.469                 | 0.034        | 0.372               | 0.029     | 0.372             | 0.029        | 0.406       | 0.023  |
-| 0 | Linear model Cross_Val   | 0.426                 | 0.017        | 0.324               | 0.011     | 0.324             | 0.011        | 0.353       | 0.01   |
-| 0 | Random forrest Cross_Val | 0.602                 | 0.038        | 0.469               | 0.026     | 0.469             | 0.026        | 0.517       | 0.03   |
-| 0 | Extra trees Cross_Val    | 0.555                 | 0.078        | 0.372               | 0.013     | 0.372             | 0.013        | 0.415       | 0.02   |
+|:---:|:------------------------:|:---------------------:|:------------:|:-------------------:|:---------:|:-----------------:|:------------:|:-----------:|:------:|
 | 0 | XGBoost Cross_Val        | 0.608                 | 0.017        | 0.561               | 0.003     | 0.561             | 0.003        | 0.582       | 0.009  |
 | 0 | Lightgbm Cross_Val       | 0.597                 | 0.035        | 0.554               | 0.018     | 0.554             | 0.018        | 0.57        | 0.024  |
+| 0 | Random forrest Cross_Val | 0.602                 | 0.038        | 0.469               | 0.026     | 0.469             | 0.026        | 0.517       | 0.03   |
+| 0 | KNN Cross_Val            | 0.469                 | 0.034        | 0.372               | 0.029     | 0.372             | 0.029        | 0.406       | 0.023  |
+| 0 | Extra trees Cross_Val    | 0.555                 | 0.078        | 0.372               | 0.013     | 0.372             | 0.013        | 0.415       | 0.02   |
+| 0 | Linear model Cross_Val   | 0.426                 | 0.017        | 0.324               | 0.011     | 0.324             | 0.011        | 0.353       | 0.01   |
 
+ ado o desequilíbrio no conjunto de dados, é importante levar em consideração a distribuição da variável-alvo ao avaliar a performance dos modelos. Isto porque a concentração excessiva de um determinado tipo de falha pode afetar a capacidade do modelo de prever corretamente as outras classes menos frequentes.
+
+### balanceamento 
+
+**Agora iremos utilizar nos modelos os parametros refrêntes ao peso de cada classes. Assim os modelos darão menos peso para classe makoritária e mais peso para as classes minoritárias.**
+
+Assim foi calculada os pesos para cada classe da variável categórica sendo eles:
+<ul>
+ <li>'Heat Dissipation Failure': 14.672955974842766,</li>
+ <li>'No Failure': 0.17266133806986383,</li>
+ <li>'Overstrain Failure': 21.60185185185185,</li>
+ <li>'Power Failure': 17.674242424242426,</li>
+ <li>'Random Failures': 97.20833333333333,</li>
+ <li>'Tool Wear Failure': 37.03174603174603</li>
+</ul>
+
+o balanceamento dos modelos se deu da seguinte forma:
+
+Para os modelos do sklearn que são o logisticRegression, BalancedRandomForrest e Extratrees no argumento 'class_weight' foi ajustado para 'balanced_subsample' que ajustou os pesos das classes internamente.
+
+Já para o Xgboost e Lightgbm, foi utilizado o argumento 'sample_weight' que foi repassado uma lista com os pesos de cada varíavel resposta.
+
+Assim os modelo balanceados tiveram a seguinte performace:
+
+|   | Model name               | precison_multclass_cv | precison_std | recall_multclass_cv | recall_cv | balanced_score_cv | balanced_std | f1_score_cv | f1_std |
+|:---:|:------------------------:|:---------------------:|:------------:|:-------------------:|:---------:|:-----------------:|:------------:|:-----------:|:------:|
+| 0 | Balanced_rf Cross_Val    | 0.294                 | 0.014        | 0.703               | 0.054     | 0.703             | 0.054        | 0.305       | 0.033  |
+| 3 | XGBoost Cross_Val        | 0.589                 | 0.009        | 0.597               | 0.012     | 0.597             | 0.012        | 0.591       | 0.007  |
+| 4 | Lightgbm Cross_Val       | 0.574                 | 0.021        | 0.567               | 0.035     | 0.567             | 0.035        | 0.568       | 0.029  |
+| 1 | Random forrest Cross_Val | 0.596                 | 0.032        | 0.471               | 0.022     | 0.471             | 0.022        | 0.516       | 0.026  |
+| 2 | Extra trees Cross_Val    | 0.63                  | 0.033        | 0.355               | 0.013     | 0.355             | 0.013        | 0.4         | 0.008  |
+
+Apesar do BalancedRandomForrest ter performado melhor no recall a precião dele foi muito afetada, é um bom exemplo que um modelo não deve ser avaliado por uma única métrica.
+
+**O modelo final escolhido foi o XGBoost**
 
 
