@@ -45,7 +45,7 @@ A divisão dos passos utilizados no projeto foi:
 <strong>Análise descritiva:</strong> Uma breve análise dos dados para adquirir familiaridade com os mesmo, incluindo o tamanho do data frame que estamos lidando assim como os tipo de dados que vamos processar, aplicando estatística descritiva sobre as informações para conhecer o comportamento dela. os dados foram divididos em numéricos e categóricos, para aplicar os métodos de análise corretos para cada tipo.
 <ul>
     <li>Númericos: verificação de métricas de tendência central, como a média e a mediana, e métricas de dispersão. Além do plot de gráficos de dispersão e boxplot </li>
-    <li>Categóricos:A contagem das frequências dos componentes das variáveis categóricas </li>
+    <li>Categóricos: a contagem das frequências dos componentes das variáveis categóricas </li>
 </ul>    
 </li>
 <li>
@@ -125,6 +125,8 @@ Falso, Máquinas que trabalham com torque acima do percentil 95 apresentam 2,5 v
 
 <h3><strong> Máquinas que trabalham com todos os atributos continuos abaixo da média não apresentam falhas</strong></h3>
 Verdadeiro, máquinas com atributos continuos que operam abaixo da média não apresentam falhas.
+
+&nbsp;
     
 <i>Todas as hipóteses testadas podem ser vistas neste </i>[<i>notebook</i>](https://github.com/lavinomenezes/desafio_indicium/blob/main/notebooks/desafio_indicium_lm_v03_EDA.ipynb)<i> para ver a descrição total, ou um breve resumo em </i>[<i>Hipóteses</i>](https://github.com/lavinomenezes/health_insurance_cross_sell/blob/main/Hipoteses.md)
 
