@@ -181,7 +181,7 @@ Para os modelos do sklearn que são o logisticRegression, BalancedRandomForrest 
 
 Já para o Xgboost e Lightgbm, foi utilizado o argumento 'sample_weight' que foi repassado uma lista com os pesos de cada varíavel resposta.
 
-Assim os modelo balanceados tiveram a seguinte performace:
+Assim os modelos balanceados tiveram a seguinte performace:
 
 |   | Model name               | precison_multclass_cv | precison_std | recall_multclass_cv | recall_cv | balanced_score_cv | balanced_std | f1_score_cv | f1_std |
 |:---:|:------------------------:|:---------------------:|:------------:|:-------------------:|:---------:|:-----------------:|:------------:|:-----------:|:------:|
@@ -221,12 +221,12 @@ Os detalhes da classe e suas funções podem ser vistas neste [notebook](https:/
 ##  Próximos passos
 
 <ul>
-<li>Iniciar um novo ciclo</li>
+<li>Iniciar um novo ciclo;</li>
 <li>Testar mais hypotheses;</li>
 <li>Criar novas features;</li>
-<li>Aplicar técnicas de oversampling e undersamplig para utilizar algoritmos que não possuem parametro para pesos das classes</li>
-<li>Testar outros algoritmos de machine learning.</li>
-<li>Utilizar testes estátisticos</li>
+<li>Aplicar técnicas de oversampling e undersamplig para utilizar algoritmos que não possuem parametro para pesos das classes;</li>
+<li>Testar outros algoritmos de machine learning;</li>
+<li>Utilizar testes estátisticos.</li>
 
 </ul>
 
