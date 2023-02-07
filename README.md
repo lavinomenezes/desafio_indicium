@@ -213,6 +213,10 @@ O arquivo com os valores previstos pelo modelo foi nomeado de 'predicted.csv'. C
 
 ## Conclusão
 
+Neste projeto, foi feito a análise de um dataframe com dados de máquinas com uma variedade de tipos de falhas e sem falhas, feito todo o processo de análise estátistica, preparação dos dados e modelagem de machine learning, que ,ao final, foi criado a classe [incidium](https://github.com/lavinomenezes/desafio_indicium/blob/main/notebooks/indicium.py) que pode ser colocada em produção para identificar quais tipos de falhas as máquinas possuem.
+
+Os detalhes da classe e suas funções podem ser vistas neste [notebook](https://github.com/lavinomenezes/desafio_indicium/blob/main/notebooks/desafio_indicium_lm_v08_predictions.ipynb)
+
 
 ##  Próximos passos
 
@@ -222,6 +226,7 @@ O arquivo com os valores previstos pelo modelo foi nomeado de 'predicted.csv'. C
 <li>Criar novas features;</li>
 <li>Aplicar técnicas de oversampling e undersamplig para utilizar algoritmos que não possuem parametro para pesos das classes</li>
 <li>Testar outros algoritmos de machine learning.</li>
+<li>Utilizar testes estátisticos</li>
 
 </ul>
 
