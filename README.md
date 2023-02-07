@@ -128,7 +128,7 @@ Verdadeiro, máquinas com atributos continuos que operam abaixo da média não a
 
 &nbsp;
     
-<i>Todas as hipóteses testadas podem ser vistas neste </i>[<i>notebook</i>](https://github.com/lavinomenezes/desafio_indicium/blob/main/notebooks/desafio_indicium_lm_v03_EDA.ipynb)<i> para ver a descrição total, ou um breve resumo em </i>[<i>Hipóteses</i>](https://github.com/lavinomenezes/health_insurance_cross_sell/blob/main/Hipoteses.md)
+<i>Todas as hipóteses testadas podem ser vistas neste </i>[<i>notebook</i>](https://github.com/lavinomenezes/desafio_indicium/blob/main/notebooks/desafio_indicium_lm_v03_EDA.ipynb)<i> para ver a descrição total.</i>
 
 ## Performance do modelo de Machine learning
 
