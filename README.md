@@ -16,7 +16,7 @@ rotational speed [rpm] | calculated from a power of 2860 W, overlaid with a norm
 torque [Nm] | torque values are normally distributed around 40 Nm with a SD = 10 Nm and no negative values.|
 tool wear [min] | The quality variants H/M/L add 5/3/2 minutes of tool wear to the used tool in the process.|
 
-##  Premissas do negócio
+##  Premissas
 
 <ul>
 <li>O dataset possui uma variável alvo "failure_type" com 6 classes no total, representando um problema de classificação multiclasse.</li>
@@ -60,7 +60,12 @@ A divisão dos passos utilizados no projeto foi:
 <li>
 <strong>Filtragem de dados:</strong> Não foi necessário filtrar nenhum dado. 
  <li>
-<strong>Análise exploratória de dados:</strong> Análise mais afunda dos atributos para definir seu comportamento com a variável target e quais são mais importantes para o modelo.Teste de hipóteses para aprofundar a análise do comportamento dos atributos e identificar padrões que possam ser utilizados para tomadas de decisão pelos outros times.
+<strong>Análise exploratória de dados:</strong> Análise mais afunda dos atributos para definir seu comportamento com a variável target e quais são mais importantes para o modelo. Incluindo
+     <ul>
+     <li>Análise univariava, observando o comportamento das variáveis continuas em cada tipo de falha</li>
+     <li>Teste de hipóteses para aprofundar a análise do comportamento dos atributos e identificar padrões que possam ser utilizados para tomadas de decisão pelos outros times.</li>
+     <li>Correlação entre variáveis continuas</li>
+     </ul>
 <li>
 <strong>Preparação dos dados:</strong> Manipular os dados para se adequarem melhor num modelo de machine learning.
 <ul>
