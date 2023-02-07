@@ -59,7 +59,8 @@ A divisão dos passos utilizados no projeto foi:
 </li>
 <li>
 <strong>Filtragem de dados:</strong> Não foi necessário filtrar nenhum dado. 
-    
+ <li>
+<strong>Análise exploratória de dados:</strong> Análise mais afunda dos atributos para definir seu comportamento com a variável target e quais são mais importantes para o modelo.Teste de hipóteses para aprofundar a análise do comportamento dos atributos e identificar padrões que possam ser utilizados para tomadas de decisão pelos outros times.
 <li>
 <strong>Preparação dos dados:</strong> Manipular os dados para se adequarem melhor num modelo de machine learning.
 <ul>
@@ -105,9 +106,22 @@ Para o treinamento, o dataset de treino foi separado em 70% treino e 30% valida�
     
 </ol>
     
-## Os Principais insights de negócio
+## Os Principais insights 
 
+<h3><strong>máquinas cuja a temperatura do ar está acima da mediana, apresentão 2x mais falha de dissipação de calor do que aquelas que estão abaixo da mediana</strong></h3>
+Falso, máquina que o ar está com temperatura abaixo da mediana não possuem falhas de aquecimento, mostrando a importância da variável para classificar falha de aquecimento
 
+![](data/images/insight_1.png)
+
+<h3><strong>Máquinas que trabalham com torque acima do 95 percentil apresentão 2x mais falhas de energia</strong></h3>
+Falso, Máquinas que trabalham com torque acima do percentil 95 apresentam 2,5 vezes mais falhas de energia que aquelas abaixo
+
+![](data/images/insight_2.png)
+
+<h3><strong> Máquinas que trabalham com todos os atributos continuos abaixo da média não apresentam falhas</strong></h3>
+Verdadeiro, máquinas com atributos continuos que operam abaixo da média não apresentam falhas.
+    
+<i>Todas as hipóteses testadas podem ser vistas neste </i>[<i>notebook</i>](https://github.com/lavinomenezes/desafio_indicium/blob/main/notebooks/desafio_indicium_lm_v03_EDA.ipynb)<i> para ver a descrição total, ou um breve resumo em </i>[<i>Hipóteses</i>](https://github.com/lavinomenezes/health_insurance_cross_sell/blob/main/Hipoteses.md)
 
 ## Performance do modelo de Machine learning
 
@@ -138,7 +152,7 @@ Para este projeto as métricas para avaliação foram:
 | 0 | Extra trees Cross_Val    | 0.555                 | 0.078        | 0.372               | 0.013     | 0.372             | 0.013        | 0.415       | 0.02   |
 | 0 | Linear model Cross_Val   | 0.426                 | 0.017        | 0.324               | 0.011     | 0.324             | 0.011        | 0.353       | 0.01   |
 
- ado o desequilíbrio no conjunto de dados, é importante levar em consideração a distribuição da variável-alvo ao avaliar a performance dos modelos. Isto porque a concentração excessiva de um determinado tipo de falha pode afetar a capacidade do modelo de prever corretamente as outras classes menos frequentes.
+Dado o desequilíbrio no conjunto de dados, é importante levar em consideração a distribuição da variável-alvo ao avaliar a performance dos modelos. Isto porque a concentração excessiva de um determinado tipo de falha pode afetar a capacidade do modelo de prever corretamente as outras classes menos frequentes.
 
 ### Balanceamento 
 
@@ -146,12 +160,12 @@ Para este projeto as métricas para avaliação foram:
 
 Assim foi calculada os pesos para cada classe da variável categórica sendo eles:
 <ul>
- <li>'Heat Dissipation Failure': 14.672955974842766,</li>
- <li>'No Failure': 0.17266133806986383,</li>
- <li>'Overstrain Failure': 21.60185185185185,</li>
- <li>'Power Failure': 17.674242424242426,</li>
- <li>'Random Failures': 97.20833333333333,</li>
- <li>'Tool Wear Failure': 37.03174603174603</li>
+ <li>'Heat Dissipation Failure': 14.672955974842766;</li>
+ <li>'No Failure': 0.17266133806986383;</li>
+ <li>'Overstrain Failure': 21.60185185185185;</li>
+ <li>'Power Failure': 17.674242424242426;</li>
+ <li>'Random Failures': 97.20833333333333;</li>
+ <li>'Tool Wear Failure': 37.03174603174603.</li>
 </ul>
 
 o balanceamento dos modelos se deu da seguinte forma:
@@ -170,7 +184,7 @@ Assim os modelo balanceados tiveram a seguinte performace:
 | 1 | Random forrest Cross_Val | 0.596                 | 0.032        | 0.471               | 0.022     | 0.471             | 0.022        | 0.516       | 0.026  |
 | 2 | Extra trees Cross_Val    | 0.63                  | 0.033        | 0.355               | 0.013     | 0.355             | 0.013        | 0.4         | 0.008  |
 
-Apesar do BalancedRandomForrest ter performado melhor no recall a precião dele foi muito afetada, é um bom exemplo que um modelo não deve ser avaliado por uma única métrica.
+Apesar do BalancedRandomForrest ter performado melhor no recall a precisão dele foi muito afetada, é um bom exemplo que um modelo não deve ser avaliado por uma única métrica.
 
 **O modelo final escolhido foi o XGBoost**
 
@@ -182,4 +196,42 @@ Na etapa de fine tuning o XGboost Não apresentou alguma melhoria, portante foi 
 ### Modelo final
 
 O modelo final foi treinando com todo o dataset de treino e salvo em formato picke para ser aplicado no dataset de treino.
+
+
+os modelos de machine learning aplicados no desenvolvimento do projeto podem ser acessados [aqui](https://github.com/lavinomenezes/desafio_indicium/blob/main/notebooks/desafio_indicium_lm_v06_machile_learning.ipynb)
+
+## Resultados de previsão
+
+O arquivo com os valores previstos pelo modelo foi nomeado de 'predicted.csv'. Como não se possuia os valores verdadeiros do dataset de treino não foi possivel calcular a performace real do modelo.
+
+## Conclusão
+
+
+##  Próximos passos
+
+<ul>
+<li>Iniciar um novo ciclo</li>
+<li>Testar mais hypotheses;</li>
+<li>Criar novas features;</li>
+<li>Aplicar técnicas de oversampling e undersamplig para utilizar algoritmos que não possuem parametro para pesos das classes</li>
+<li>Testar outros algoritmos de machine learning.</li>
+
+</ul>
+
+## Ferramentas utilizadas
+
+<ul>
+    <li>Jupyter notebook</li>
+    <li>Git</li>
+    <li>Python</li>
+    <li>Pandas</li>
+    <li>Numpy</li>
+    <li>Sklearn</li>
+    <li>Seaborn</li>
+    <li>XGBoost</li>
+    <li>Lightgbm</li>
+    <li>KNN</li>
+    <li>hyperopt</li>
+    <li>Heroku</li>
+</ul>
 
