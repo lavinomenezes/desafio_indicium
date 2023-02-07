@@ -100,7 +100,6 @@ Com os resultados do boruta, feature importance e as análises feitas previament
 Para o treinamento, o dataset de treino foi separado em 70% treino e 30% validação. Ao final o modelo escolhido foi o XGBoost, mais a frente será mostrado o motivo da escolha
 </li>
 <li>
-<li>
 <strong>Fine tuning:</strong> Para isso utilizaremos a optimização baysiana - que é um modelo probabilístico utilizado para encontrar o mínimo erro da função. Essa técnica requer uma quantidade menor de iterações para achar o melhor conjunto de parâmetros, ignorando os valores de parâmetros desnecessários e economizando tempo e poder computacional. A biblioteca hyperopt foi utilizada para realizar essa etapa.  
 </li>
     
@@ -141,7 +140,7 @@ Para este projeto as métricas para avaliação foram:
 
  ado o desequilíbrio no conjunto de dados, é importante levar em consideração a distribuição da variável-alvo ao avaliar a performance dos modelos. Isto porque a concentração excessiva de um determinado tipo de falha pode afetar a capacidade do modelo de prever corretamente as outras classes menos frequentes.
 
-### balanceamento 
+### Balanceamento 
 
 **Agora iremos utilizar nos modelos os parametros refrêntes ao peso de cada classes. Assim os modelos darão menos peso para classe makoritária e mais peso para as classes minoritárias.**
 
@@ -175,4 +174,12 @@ Apesar do BalancedRandomForrest ter performado melhor no recall a precião dele 
 
 **O modelo final escolhido foi o XGBoost**
 
+### Fine tuning
+
+Na etapa de fine tuning o XGboost Não apresentou alguma melhoria, portante foi treinado com os parametros autómaticos do mesmo.
+
+
+### Modelo final
+
+O modelo final foi treinando com todo o dataset de treino e salvo em formato picke para ser aplicado no dataset de treino.
 
